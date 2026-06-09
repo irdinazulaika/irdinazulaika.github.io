@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Irdina Zulaika</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --rose: #c9728a; --rose-light: #f7e8ed; --rose-pale: #fdf4f7;
+    --mauve: #8b6a8c; --mauve-light: #f0e8f2;
+    --gold: #b8985a; --gold-light: #faf3e4;
+    --cream: #fdfaf8; --white: #ffffff;
+    --ink: #231820; --ink-soft: #524050; --ink-muted: #937e90;
+    --border: #ecdde5; --nav-h: 68px;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: Arial, Helvetica, sans-serif; background: var(--cream); color: var(--ink); font-size: 17px; line-height: 1.75; overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    height: var(--nav-h);
+    background: rgba(253,250,248,0.96);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5vw;
+  }
+  .logo { font-size: 1.4rem; font-weight: 700; color: var(--ink); }
+  .logo span { color: var(--rose); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 0.82rem; font-weight: 700; color: var(--ink-soft); text-decoration: none; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--rose); }
+  .nav-cta { background: var(--rose) !important; color: white !important; padding: 8px 20px; border-radius: 40px; }
+  .nav-cta:hover { opacity: 0.85; }
+  .hamburger { display: none; background: none; border: none; cursor: pointer; font-size: 1.4rem; color: var(--ink); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    padding: calc(var(--nav-h) + 60px) 5vw 80px;
+    display: grid; grid-template-columns: 1.1fr 0.9fr;
+    gap: 5rem; align-items: center;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    color: var(--rose); font-size: 0.76rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px;
+  }
+  .eyebrow::before { content: ''; width: 24px; height: 2px; background: var(--rose); display: block; border-radius: 2px; }
+  .hero h1 { font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 700; line-height: 1.12; margin-bottom: 18px; }
+  .hero h1 span { color: var(--rose); }
+  .hero-desc { font-size: 1rem; color: var(--ink-soft); line-height: 1.85; max-width: 440px; margin-bottom: 26px; }
+  .hero-btns { display: flex; gap: 12px; margin-bottom: 36px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--rose); color: white; padding: 13px 26px; border-radius: 40px;
+    text-decoration: none; font-family: Arial, Helvetica, sans-serif; font-size: 0.88rem; font-weight: 700;
+    display: inline-flex; align-items: center; gap: 8px; transition: opacity 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+  .btn-ghost {
+    background: transparent; color: var(--ink); padding: 12px 26px; border-radius: 40px;
+    border: 1.5px solid var(--border); text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif; font-size: 0.88rem; font-weight: 700;
+    display: inline-flex; align-items: center; gap: 8px; transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--rose); color: var(--rose); }
+  .hero-stats { display: flex; gap: 2.5rem; }
+  .stat-num { font-size: 2.4rem; font-weight: 700; color: var(--rose); display: block; line-height: 1; }
+  .stat-lbl { font-size: 0.72rem; color: var(--ink-muted); letter-spacing: 0.07em; text-transform: uppercase; font-weight: 700; margin-top: 4px; }
+  .hero-right { display: flex; flex-direction: column; gap: 14px; }
+  .feature-card {
+    background: var(--white); border: 1px solid var(--border); border-radius: 16px;
+    padding: 16px 18px; display: flex; align-items: flex-start; gap: 14px; transition: transform 0.2s;
+  }
+  .feature-card:hover { transform: translateY(-2px); }
+  .feature-card:nth-child(2) { margin-left: 2rem; }
+  .fc-icon { width: 44px; height: 44px; flex-shrink: 0; border-radius: 11px; display: flex; align-items: center; justify-content: center; font-size: 19px; }
+  .fc-icon.rose { background: var(--rose-light); color: var(--rose); }
+  .fc-icon.mauve { background: var(--mauve-light); color: var(--mauve); }
+  .fc-icon.gold { background: var(--gold-light); color: var(--gold); }
+  .feature-card h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 3px; }
+  .feature-card p { font-size: 0.8rem; color: var(--ink-muted); line-height: 1.6; }
+
+  /* DIVIDER */
+  .divider { height: 1px; background: var(--border); }
+
+  /* SECTIONS */
+  .bg-blush { background: #fdf7f9; }
+  .section { padding: 70px 5vw; max-width: 1200px; margin: 0 auto; }
+  .sec-eye {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: var(--rose); font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px;
+  }
+  .sec-eye::before { content: ''; width: 18px; height: 2px; background: var(--rose); display: block; border-radius: 2px; }
+  .section h2 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 700; line-height: 1.2; margin-bottom: 6px; }
+  .section-sub { color: var(--ink-muted); font-size: 0.92rem; margin-bottom: 32px; max-width: 460px; }
+
+  /* BLOG */
+  .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+  .blog-card {
+    background: var(--white); border: 1px solid var(--border); border-radius: 18px;
+    overflow: hidden; text-decoration: none; color: inherit;
+    display: flex; flex-direction: column; transition: transform 0.2s;
+  }
+  .blog-card:hover { transform: translateY(-3px); }
+  .blog-thumb { height: 140px; display: flex; align-items: center; justify-content: center; }
+  .blog-thumb.t1 { background: var(--rose-light); } .blog-thumb.t1 i { font-size: 2.2rem; color: var(--rose); }
+  .blog-thumb.t2 { background: var(--mauve-light); } .blog-thumb.t2 i { font-size: 2.2rem; color: var(--mauve); }
+  .blog-thumb.t3 { background: var(--gold-light); } .blog-thumb.t3 i { font-size: 2.2rem; color: var(--gold); }
+  .blog-body { padding: 18px; flex: 1; display: flex; flex-direction: column; }
+  .blog-cat { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--rose); margin-bottom: 6px; }
+  .blog-card h3 { font-size: 1.02rem; font-weight: 700; line-height: 1.35; margin-bottom: 7px; }
+  .blog-card p { font-size: 0.86rem; color: var(--ink-muted); line-height: 1.65; flex: 1; }
+  .blog-meta { display: flex; justify-content: space-between; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 0.74rem; color: var(--ink-muted); }
+
+  /* TOOLS */
+  .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+  .tool-card { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 22px; transition: transform 0.2s; }
+  .tool-card:hover { transform: translateY(-2px); }
+  .tool-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 21px; margin-bottom: 14px; }
+  .tool-icon.rose { background: var(--rose-light); color: var(--rose); }
+  .tool-icon.mauve { background: var(--mauve-light); color: var(--mauve); }
+  .tool-icon.gold { background: var(--gold-light); color: var(--gold); }
+  .tool-icon.dusty { background: #f3eeee; color: #a07080; }
+  .tool-card h3 { font-size: 0.98rem; font-weight: 700; margin-bottom: 6px; }
+  .tool-card p { font-size: 0.86rem; color: var(--ink-muted); line-height: 1.7; margin-bottom: 14px; }
+  .open-badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: var(--rose-pale); color: var(--rose);
+    font-size: 0.66rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+    padding: 4px 11px; border-radius: 20px; border: 1px solid var(--border);
+  }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 0.7fr 1fr; gap: 5rem; align-items: start; }
+  .avatar-box {
+    width: 100%; aspect-ratio: 3/4; background: var(--rose-pale); border: 1px solid var(--border);
+    border-radius: 22px; display: flex; align-items: center; justify-content: center;
+    font-size: 5rem; position: relative;
+  }
+  .avatar-accent {
+    position: absolute; bottom: -14px; right: -14px;
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 14px; padding: 11px 15px;
+    display: flex; align-items: center; gap: 9px;
+  }
+  .avatar-accent i { font-size: 19px; color: var(--rose); }
+  .avatar-accent-text { font-size: 0.74rem; color: var(--ink-soft); }
+  .avatar-accent-text strong { display: block; font-weight: 700; font-size: 0.82rem; }
+  .about-content h2 { font-size: clamp(1.7rem, 3vw, 2.1rem); font-weight: 700; margin-bottom: 14px; line-height: 1.2; }
+  .about-content p { font-size: 0.92rem; color: var(--ink-soft); line-height: 1.85; margin-bottom: 12px; }
+  .skill-pills { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0; }
+  .pill { background: var(--white); border: 1px solid var(--border); color: var(--ink-soft); font-size: 0.78rem; padding: 5px 14px; border-radius: 40px; }
+  .socials { display: flex; gap: 9px; margin-top: 18px; }
+  .soc-btn {
+    width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--ink-soft); text-decoration: none; font-size: 17px;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+  .soc-btn:hover { border-color: var(--rose); color: var(--rose); background: var(--rose-pale); }
+
+  /* CTA NEWSLETTER */
+  .cta-band {
+    margin: 0 5vw 64px;
+    background: var(--rose); border-radius: 22px; padding: 52px 5vw;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+  }
+  .cta-band h2 { font-size: clamp(1.6rem, 3vw, 2rem); font-weight: 700; color: white; line-height: 1.2; max-width: 340px; }
+  .cta-band p { color: rgba(255,255,255,0.8); font-size: 0.92rem; margin-top: 6px; }
+  .cta-form { display: flex; gap: 10px; flex-wrap: wrap; }
+  .cta-form input {
+    padding: 13px 18px; border-radius: 40px; border: none;
+    background: rgba(255,255,255,0.18); color: white;
+    font-family: Arial, Helvetica, sans-serif; font-size: 0.9rem; outline: none; min-width: 200px; flex: 1;
+  }
+  .cta-form input::placeholder { color: rgba(255,255,255,0.6); }
+  .cta-form button {
+    padding: 13px 24px; border-radius: 40px; border: none;
+    background: white; color: var(--rose);
+    font-family: Arial, Helvetica, sans-serif; font-size: 0.9rem; font-weight: 700;
+    cursor: pointer; white-space: nowrap; transition: opacity 0.2s;
+  }
+  .cta-form button:hover { opacity: 0.9; }
+
+  /* FOOTER */
+  footer { border-top: 1px solid var(--border); padding: 22px 5vw; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  footer p { font-size: 0.8rem; color: var(--ink-muted); }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a { font-size: 0.8rem; color: var(--ink-muted); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--rose); }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; gap: 2rem; min-height: auto; padding-top: calc(var(--nav-h) + 40px); }
+    .hero-right { display: none; }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .nav-links { display: none; }
+    .hamburger { display: block; }
+    .nav-links.open { display: flex; flex-direction: column; position: absolute; top: var(--nav-h); left: 0; right: 0; background: var(--cream); border-bottom: 1px solid var(--border); padding: 1.5rem 5vw; gap: 1.2rem; }
+    .cta-band { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="logo">Irdina <span>Zulaika</span></div>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#tools">AI Tools</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact" class="nav-cta">Say Hello</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">&#9776;</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <div class="eyebrow">Writer &middot; Creator &middot; AI Explorer</div>
+    <h1>Where <span>ideas</span> meet intelligence.</h1>
+    <p class="hero-desc">I write about life, knowledge, and the space where humanity meets AI &mdash; and I build open-source tools that make intelligent technology genuinely accessible.</p>
+    <div class="hero-btns">
+      <a href="#blog" class="btn-primary"><i class="ti ti-book" aria-hidden="true"></i> Read my blog</a>
+      <a href="#tools" class="btn-ghost"><i class="ti ti-robot" aria-hidden="true"></i> Explore AI tools</a>
+    </div>
+    <div class="hero-stats">
+      <div><span class="stat-num">24+</span><div class="stat-lbl">Articles</div></div>
+      <div><span class="stat-num">8</span><div class="stat-lbl">AI Tools</div></div>
+      <div><span class="stat-num">1k+</span><div class="stat-lbl">Readers</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="feature-card">
+      <div class="fc-icon rose"><i class="ti ti-writing" aria-hidden="true"></i></div>
+      <div><h4>Latest vlog</h4><p>Navigating life with curiosity &mdash; unfiltered thoughts on growth, culture, and the digital world.</p></div>
+    </div>
+    <div class="feature-card">
+      <div class="fc-icon mauve"><i class="ti ti-robot" aria-hidden="true"></i></div>
+      <div><h4>AI Tools &mdash; free &amp; open source</h4><p>Practical tools built with care to help you work smarter every day.</p></div>
+    </div>
+    <div class="feature-card">
+      <div class="fc-icon gold"><i class="ti ti-bulb" aria-hidden="true"></i></div>
+      <div><h4>Knowledge hub</h4><p>Curated insights across tech, creativity, productivity, and everything in between.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- BLOG -->
+<div class="bg-blush">
+<section class="section" id="blog">
+  <div class="sec-eye">Blog &amp; Vlogs</div>
+  <h2>Stories, thoughts &amp; discoveries</h2>
+  <p class="section-sub">Personal essays, knowledge deep-dives, and vlogs from a curious mind navigating the modern world.</p>
+  <div class="blog-grid">
+    <a class="blog-card" href="#">
+      <div class="blog-thumb t1"><i class="ti ti-brain" aria-hidden="true"></i></div>
+      <div class="blog-body">
+        <div class="blog-cat">Knowledge</div>
+        <h3>How I Use AI to Learn Anything Faster</h3>
+        <p>A practical guide to using language models as your personal tutor &mdash; without losing your critical thinking.</p>
+        <div class="blog-meta"><span>June 2, 2026</span><span>5 min read</span></div>
+      </div>
+    </a>
+    <a class="blog-card" href="#">
+      <div class="blog-thumb t2"><i class="ti ti-heart" aria-hidden="true"></i></div>
+      <div class="blog-body">
+        <div class="blog-cat">Life &amp; Culture</div>
+        <h3>The Quiet Power of Doing Less, Intentionally</h3>
+        <p>What slow living taught me about productivity, presence, and the things worth keeping in a noisy world.</p>
+        <div class="blog-meta"><span>May 20, 2026</span><span>6 min read</span></div>
+      </div>
+    </a>
+    <a class="blog-card" href="#">
+      <div class="blog-thumb t3"><i class="ti ti-trending-up" aria-hidden="true"></i></div>
+      <div class="blog-body">
+        <div class="blog-cat">Technology</div>
+        <h3>Why Everyone Should Understand Prompt Engineering</h3>
+        <p>It's not just for developers. Here's why crafting good prompts is the new literacy of the AI era.</p>
+        <div class="blog-meta"><span>May 10, 2026</span><span>4 min read</span></div>
+      </div>
+    </a>
+  </div>
+  <div style="text-align:center; margin-top:28px;">
+    <a href="#" class="btn-ghost">View all posts <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+  </div>
+</section>
+</div>
+
+<div class="divider"></div>
+
+<!-- AI TOOLS -->
+<section class="section" id="tools">
+  <div class="sec-eye">AI Tools</div>
+  <h2>Free tools, built for everyone</h2>
+  <p class="section-sub">Open-source AI utilities you can use right now &mdash; no sign-up, no paywalls.</p>
+  <div class="tools-grid">
+    <div class="tool-card">
+      <div class="tool-icon rose"><i class="ti ti-pencil" aria-hidden="true"></i></div>
+      <h3>AI Writing Assistant</h3>
+      <p>Improve your writing clarity, grammar, and style with AI feedback tailored to your tone.</p>
+      <div class="open-badge"><i class="ti ti-lock-open" aria-hidden="true"></i> Open Source</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-icon mauve"><i class="ti ti-file-text" aria-hidden="true"></i></div>
+      <h3>Smart Summarizer</h3>
+      <p>Paste any article or document and get a concise, accurate summary in seconds.</p>
+      <div class="open-badge"><i class="ti ti-lock-open" aria-hidden="true"></i> Open Source</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-icon gold"><i class="ti ti-messages" aria-hidden="true"></i></div>
+      <h3>Prompt Builder</h3>
+      <p>Craft better prompts for ChatGPT, Claude, and other models with guided templates.</p>
+      <div class="open-badge"><i class="ti ti-lock-open" aria-hidden="true"></i> Open Source</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-icon dusty"><i class="ti ti-vocabulary" aria-hidden="true"></i></div>
+      <h3>Idea Generator</h3>
+      <p>Beat writer's block with AI-powered brainstorming for blog posts and projects.</p>
+      <div class="open-badge"><i class="ti ti-lock-open" aria-hidden="true"></i> Open Source</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<div class="bg-blush">
+<section class="section" id="about">
+  <div class="about-grid">
+    <div style="position:relative;">
+      <div class="avatar-box">&#127800;
+        <div class="avatar-accent">
+          <i class="ti ti-map-pin" aria-hidden="true"></i>
+          <div class="avatar-accent-text"><strong>Malaysia &#127474;&#127486;</strong>Based in Selangor</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-content">
+      <div class="sec-eye" style="margin-bottom:10px;">About me</div>
+      <h2>Hi, I'm Irdina Zulaika</h2>
+      <p>I'm a writer, knowledge seeker, and AI enthusiast passionate about making complex ideas feel approachable and human. My corner of the internet is a space to think out loud &mdash; about technology, culture, creativity, and life.</p>
+      <p>Beyond writing, I build free AI tools designed to genuinely help people. I believe good technology should be accessible to everyone &mdash; not locked behind paywalls or jargon.</p>
+      <p>When I'm not writing or building, you'll find me reading too many books, exploring internet rabbit holes, or drinking coffee while overthinking perfectly good ideas.</p>
+      <div class="skill-pills">
+        <span class="pill">Content Writing</span>
+        <span class="pill">AI / Machine Learning</span>
+        <span class="pill">Web Development</span>
+        <span class="pill">Prompt Engineering</span>
+        <span class="pill">Knowledge Curation</span>
+        <span class="pill">Open Source</span>
+      </div>
+      <div class="socials">
+        <a href="#" class="soc-btn" aria-label="Twitter"><i class="ti ti-brand-twitter"></i></a>
+        <a href="#" class="soc-btn" aria-label="LinkedIn"><i class="ti ti-brand-linkedin"></i></a>
+        <a href="#" class="soc-btn" aria-label="GitHub"><i class="ti ti-brand-github"></i></a>
+        <a href="#" class="soc-btn" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>
+        <a href="#" class="soc-btn" aria-label="Email"><i class="ti ti-mail"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- NEWSLETTER -->
+<div id="contact" style="padding: 48px 0 0;">
+  <div class="cta-band">
+    <div>
+      <h2>Stay in the loop. No spam, ever.</h2>
+      <p>New articles, tool launches, and curated finds &mdash; straight to your inbox.</p>
+    </div>
+    <div class="cta-form">
+      <input type="email" placeholder="your@email.com" aria-label="Email address">
+      <button type="button">Subscribe <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 Irdina Zulaika &mdash; All rights reserved.</p>
+  <div class="footer-links">
+    <a href="#blog">Blog</a>
+    <a href="#tools">AI Tools</a>
+    <a href="#about">About</a>
+    <a href="#">GitHub</a>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+</script>
+
+</body>
+</html>
