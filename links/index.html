@@ -919,11 +919,11 @@
       bird = { x: W * 0.28, y: H * 0.45, r: 11, vy: 0 };
       pipes = [];
       score = 0;
-      gravity = 0.09;
-      jump = -3.4;
-      pipeGap = H * 0.38;
+      gravity = 0.14;
+      jump = -4.2;
+      pipeGap = H * 0.36;
       pipeWidth = 38;
-      pipeSpeed = 0.75;
+      pipeSpeed = 1.4;
       spawnTimer = 0;
       running = false;
       started = false;
@@ -1032,11 +1032,11 @@
       }
 
       bird.vy += gravity;
-      if (bird.vy > 2.6) bird.vy = 2.6;
+      if (bird.vy > 3.6) bird.vy = 3.6;
       bird.y += bird.vy;
 
       spawnTimer++;
-      if (spawnTimer > 210) {
+      if (spawnTimer > 130) {
         spawnTimer = 0;
         var margin = 30;
         var gapY = margin + Math.random() * (H - pipeGap - margin * 2);
